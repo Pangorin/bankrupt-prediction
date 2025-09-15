@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự đoán Vỡ nợ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            max-width: 700px;
+            margin: 50px auto;
+        }
+        .btn-predict {
+            width: 100%;
+            font-size: 1.25rem;
+        }
+        .result-box {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container form-container">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Dự đoán Khả năng Vỡ nợ</h1>
+                <form action="/" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="RevolvingUtilizationOfUnsecuredLines" class="form-label">Tỷ lệ sử dụng khoản vay không có bảo đảm:</label>
+                            <input type="number" step="any" class="form-control" name="RevolvingUtilizationOfUnsecuredLines" required value="{{ form_data.get('RevolvingUtilizationOfUnsecuredLines', '') }}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="age" class="form-label">Tuổi:</label>
+                            <input type="number" class="form-control" name="age" required value="{{ form_data.get('age', '') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="NumberOfTime30-59DaysPastDueNotWorse" class="form-label">Số lần quá hạn 30-59 ngày:</label>
+                            <input type="number" class="form-control" name="NumberOfTime30-59DaysPastDueNotWorse" required value="{{ form_data.get('NumberOfTime30-59DaysPastDueNotWorse', '') }}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="DebtRatio" class="form-label">Tỷ lệ nợ:</label>
+                            <input type="number" step="any" class="form-control" name="DebtRatio" required value="{{ form_data.get('DebtRatio', '') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="MonthlyIncome" class="form-label">Thu nhập hàng tháng:</label>
+                            <input type="number" step="any" class="form-control" name="MonthlyIncome" required value="{{ form_data.get('MonthlyIncome', '') }}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="NumberOfOpenCreditLinesAndLoans" class="form-label">Số dòng tín dụng đang mở:</label>
+                            <input type="number" class="form-control" name="NumberOfOpenCreditLinesAndLoans" required value="{{ form_data.get('NumberOfOpenCreditLinesAndLoans', '') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="NumberOfTimes90DaysLate" class="form-label">Số lần quá hạn 90 ngày:</label>
+                            <input type="number" class="form-control" name="NumberOfTimes90DaysLate" required value="{{ form_data.get('NumberOfTimes90DaysLate', '') }}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="NumberRealEstateLoansOrLines" class="form-label">Số khoản vay bất động sản:</label>
+                            <input type="number" class="form-control" name="NumberRealEstateLoansOrLines" required value="{{ form_data.get('NumberRealEstateLoansOrLines', '') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="NumberOfTime60-89DaysPastDueNotWorse" class="form-label">Số lần quá hạn 60-89 ngày:</label>
+                            <input type="number" class="form-control" name="NumberOfTime60-89DaysPastDueNotWorse" required value="{{ form_data.get('NumberOfTime60-89DaysPastDueNotWorse', '') }}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="NumberOfDependents" class="form-label">Số người phụ thuộc:</label>
+                            <input type="number" class="form-control" name="NumberOfDependents" required value="{{ form_data.get('NumberOfDependents', '') }}">
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-predict">Dự đoán</button>
+                    </div>
+                </form>
+
+                {% if prediction_result %}
+                    <div class="alert alert-success mt-4 result-box" role="alert">
+                        {{ prediction_result }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
