@@ -1,7 +1,3 @@
-Tệp tin bạn cung cấp ở định dạng markdown (`.md`), bạn có thể sao chép và dán trực tiếp nội dung dưới đây vào tệp `README.md` của mình.
-
------
-
 # Ứng Dụng Dự Đoán Khả Năng Vỡ Nợ
 
 Một ứng dụng web đơn giản sử dụng **Python Flask** và mô hình học máy **XGBoost** để dự đoán xác suất một cá nhân vỡ nợ dựa trên các thông tin tài chính cá nhân.
